@@ -1,3 +1,4 @@
-Get-ChildItem C:\Users -Recurse -ErrorAction SilentlyContinue |
+Get-ChildItem C:\Users -Recurse -ErrorAction SilentlyContinue | 
+    Where-Object { -not $_.PSIsContainer } |
     Sort-Object Length -Descending |
-    Select-Object FullName, @{Name="SizeMB";Expression={"{0:N2}" -f ($_.Length/1MB)}} -First 10
+    Select-Object Name, @{Name="SizeMB";Expression={"{0:N2}" -f ($_.Length/1MB)}} -First 10
